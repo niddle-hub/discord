@@ -1,5 +1,5 @@
 import config
-import discord
+import discord.py
 import pymysql
 import asyncio
 
