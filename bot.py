@@ -3,7 +3,7 @@ import discord
 import pymysql
 import asyncio
 import os
-#hello there
+
 client = discord.Client()
 
 db = pymysql.connect('31.31.196.157', config.LOG, config.PASS, config.DB)
