@@ -6,7 +6,7 @@ import os
 
 client = discord.Client()
 
-db = pymysql.connect(config.HOST, config.LOG, config.PASS, config.DB)
+db = pymysql.connect('31.31.196.157', config.LOG, config.PASS, config.DB)
 
 @client.event
 async def on_ready():
