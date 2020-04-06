@@ -4,4 +4,4 @@ websockets
 chardet
 pymysql
 asyncio
-schedule
+pytz

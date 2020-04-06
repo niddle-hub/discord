@@ -3,12 +3,14 @@ import discord
 import pymysql
 import asyncio
 import os
-import schedule
-import time
+import pytz
+from datetime import datetime
 
 client = discord.Client()
 
 db = pymysql.connect('31.31.196.157', config.LOG, config.PASS, config.DB)
+
+tz = pytz.timezone('Asia/Yekaterinburg')
 
 @client.event
 async def on_ready():
@@ -99,9 +101,10 @@ async def on_member_remove(member):
 async def get_gay():
     await client.wait_until_ready()
     channel = client.get_channel(config.CHANNEL_ID)
+    timer = datetime(year = 2020, month=12, day=31, hour = 12, minute = 0, second = 0).strftime('%X')
     while not client.is_closed():
-        now = time.strftime("%H:%M")
-        if str(now) == "12:00":
+        now = datetime.now(tz).strftime('%X')
+        if now == timer:
             try:
                 cursor = db.cursor()
                 sql = "UPDATE users SET gay_role = 0 WHERE gay_role = 1"
@@ -116,9 +119,6 @@ async def get_gay():
             except Exception as e:
                 print(e)
             await asyncio.sleep(60)
-        else:
-            print (now)
-            await asyncio.sleep(1)
 
 client.bg_task = client.loop.create_task(get_gay())
 TOKEN = os.environ.get('BOT_TOKEN')
