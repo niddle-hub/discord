@@ -100,20 +100,25 @@ async def get_gay():
     await client.wait_until_ready()
     channel = client.get_channel(config.CHANNEL_ID)
     while not client.is_closed():
-        try:
-            cursor = db.cursor()
-            sql = "UPDATE users SET gay_role = 0 WHERE gay_role = 1"
-            cursor.execute(sql)
-            sql = "SELECT dis_id FROM users WHERE dis_id != 693871698298142721 ORDER BY RAND() LIMIT 1;"
-            cursor.execute(sql)
-            result = cursor.fetchone()
-            sql = "UPDATE users SET gay_role = 1 , gay_count = gay_count + 1 WHERE dis_id = %s"
-            cursor.execute(sql, str(result[0]))
-            db.commit()
-            await channel.send("Пидорас дня => <@" + str(result[0]) + ">")
-        except Exception as e:
-            print(e)
-        await asyncio.sleep(86400)
+        now = time.strftime("%H:%M")
+        if str(now) == "12:00":
+            try:
+                cursor = db.cursor()
+                sql = "UPDATE users SET gay_role = 0 WHERE gay_role = 1"
+                cursor.execute(sql)
+                sql = "SELECT dis_id FROM users WHERE dis_id != 693871698298142721 ORDER BY RAND() LIMIT 1;"
+                cursor.execute(sql)
+                result = cursor.fetchone()
+                sql = "UPDATE users SET gay_role = 1 , gay_count = gay_count + 1 WHERE dis_id = %s"
+                cursor.execute(sql, str(result[0]))
+                db.commit()
+                await channel.send("Пидорас дня => <@" + str(result[0]) + ">")
+            except Exception as e:
+                print(e)
+            await asyncio.sleep(60)
+        else:
+            print (now)
+            await asyncio.sleep(1)
 
 client.bg_task = client.loop.create_task(get_gay())
 TOKEN = os.environ.get('BOT_TOKEN')
