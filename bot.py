@@ -3,6 +3,8 @@ import discord
 import pymysql
 import asyncio
 import os
+import schedule
+import time
 
 client = discord.Client()
 
@@ -96,6 +98,7 @@ async def on_member_remove(member):
 
 async def get_gay():
     await client.wait_until_ready()
+    # await asyncio.sleep(86400)
     channel = client.get_channel(config.CHANNEL_ID)
     while not client.is_closed():
         try:
@@ -112,10 +115,15 @@ async def get_gay():
         except Exception as e:
             print(e)
 
-        await asyncio.sleep(86400) # task runs every N seconds
+        # await asyncio.sleep(86400) # task runs every N seconds
 
+schedule.every().day.at("10:00").do(get_gay)
 
-client.bg_task = client.loop.create_task(get_gay())
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+    
+# client.bg_task = client.loop.create_task(get_gay())
 TOKEN = os.environ.get('BOT_TOKEN')
 client.run(str(TOKEN))
 db.close()
