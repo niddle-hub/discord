@@ -117,12 +117,16 @@ async def get_gay():
 
         # await asyncio.sleep(86400) # task runs every N seconds
 
-schedule.every().day.at("10:00").do(get_gay)
+async def testi():
+    print("I'm working...")
+
+schedule.every(10).seconds.do(testi)
+# schedule.every().day.at("10:00").do(get_gay)
 
 while True:
     schedule.run_pending()
     time.sleep(1)
-    
+
 # client.bg_task = client.loop.create_task(get_gay())
 TOKEN = os.environ.get('BOT_TOKEN')
 client.run(str(TOKEN))
