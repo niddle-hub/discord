@@ -119,6 +119,7 @@ async def get_gay():
             except Exception as e:
                 print(e)
             await asyncio.sleep(60)
+        await asyncio.sleep(1)
 
 client.bg_task = client.loop.create_task(get_gay())
 TOKEN = os.environ.get('BOT_TOKEN')
