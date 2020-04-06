@@ -118,7 +118,8 @@ async def get_gay():
         # await asyncio.sleep(86400) # task runs every N seconds
 
 async def testi():
-    print("I'm working...")
+    channel = client.get_channel(config.CHANNEL_ID)
+    await channel.send("testing schedule...")
 
 schedule.every(10).seconds.do(testi)
 # schedule.every().day.at("10:00").do(get_gay)
