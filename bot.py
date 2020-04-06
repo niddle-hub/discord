@@ -98,7 +98,6 @@ async def on_member_remove(member):
 
 async def get_gay():
     await client.wait_until_ready()
-    await asyncio.sleep(5)
     channel = client.get_channel(config.CHANNEL_ID)
     while not client.is_closed():
         try:
@@ -114,15 +113,9 @@ async def get_gay():
             await channel.send("Пидорас дня => <@" + str(result[0]) + ">")
         except Exception as e:
             print(e)
+        await asyncio.sleep(86400)
 
-schedule.every(10).seconds.do(get_gay)
-# schedule.every().day.at("10:00").do(get_gay)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-
-# client.bg_task = client.loop.create_task(get_gay())
+client.bg_task = client.loop.create_task(get_gay())
 TOKEN = os.environ.get('BOT_TOKEN')
 client.run(str(TOKEN))
 db.close()
