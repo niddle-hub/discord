@@ -1,3 +1,0 @@
-import discord.py
-import pymysql
-import asyncio
