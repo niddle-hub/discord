@@ -98,7 +98,7 @@ async def on_member_remove(member):
 
 async def get_gay():
     await client.wait_until_ready()
-    # await asyncio.sleep(86400)
+    await asyncio.sleep(5)
     channel = client.get_channel(config.CHANNEL_ID)
     while not client.is_closed():
         try:
@@ -115,12 +115,7 @@ async def get_gay():
         except Exception as e:
             print(e)
 
-        # await asyncio.sleep(86400) # task runs every N seconds
-
-def testi():
-    print ("testing")
-
-schedule.every(10).seconds.do(testi)
+schedule.every(10).seconds.do(get_gay)
 # schedule.every().day.at("10:00").do(get_gay)
 
 while True:
