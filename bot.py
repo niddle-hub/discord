@@ -117,5 +117,5 @@ async def get_gay():
 
 client.bg_task = client.loop.create_task(get_gay())
 TOKEN = os.environ.get('BOT_TOKEN')
-client.run(TOKEN)
+client.run(str(TOKEN))
 db.close()
