@@ -122,6 +122,6 @@ async def get_gay():
         await asyncio.sleep(1)
 
 client.bg_task = client.loop.create_task(get_gay())
+db.close()
 TOKEN = os.environ.get('BOT_TOKEN')
 client.run(str(TOKEN))
-db.close()
