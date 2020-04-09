@@ -116,7 +116,7 @@ async def on_member_remove(member):
         except Exception as e:
             print(e)
         else:
-            await channel.send("Нас покидает <@{0}> ...................... похуй......🕯".format(member.id))
+            await TextChannel.send("Нас покидает <@{0}> ...................... похуй......🕯".format(member.id))
         finally:
             cursor.close()
             break
