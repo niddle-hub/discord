@@ -2,6 +2,7 @@ import discord
 import sqlite3
 import asyncio
 import pytz
+import os
 from datetime import datetime
 
 client = discord.Client()
