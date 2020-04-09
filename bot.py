@@ -12,7 +12,8 @@ tz = pytz.timezone('Asia/Yekaterinburg')
 @client.event
 async def on_connect():
     print('Client connect to discord!')
-    client.guild.create_role(name="ПИДОРАС", colour=0xFF7FEDFF)
+    for guild in client.guilds:
+        guild.create_role(name="ПИДОРАС", colour=0xFF7FEDFF)
 
 @client.event
 async def on_ready():
