@@ -92,14 +92,34 @@ async def on_message(message):
 @client.event
 async def on_member_join(member):
     for TextChannel in member.guild.text_channels:
-        await TextChannel.send("Приветствуем тебя <@{0}>".format(member.id))
-        break
+        cursor = db.cursor()
+        sql = "INSERT INTO `%s` (`dis_id`) VALUES (?)" % member.guild.id
+        try:
+            cursor.execute(sql, (member.id,))
+            db.commit()
+        except Exception as e:
+            print(e)
+        else:
+            await TextChannel.send("К нам зяглянул <@{0}> ...................... заебись......👍".format(member.id))
+        finally:
+            cursor.close()
+            break
 
 @client.event
 async def on_member_remove(member):
     for TextChannel in member.guild.text_channels:
-        await TextChannel.send("Попрощаемся с <@{0}>".format(member.id))
-        break
+        cursor = db.cursor()
+        sql = "DELETE FROM `%s` WHERE `dis_id` = %s;" % (member.guild.id, member.id)
+        try:
+            cursor.execute(sql)
+            db.commit()
+        except Exception as e:
+            print(e)
+        else:
+            await channel.send("Нас покидает <@{0}> ...................... похуй......🕯".format(member.id))
+        finally:
+            cursor.close()
+            break
 
 async def get_gay():
     await client.wait_until_ready()
