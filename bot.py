@@ -41,6 +41,8 @@ async def on_ready():
         finally:
             cursor.close()
 
+#TODO: Разобраться почему не работают sql запросы
+
 @client.event 
 async def on_message(message):
     channel = message.channel
