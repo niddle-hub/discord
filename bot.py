@@ -128,7 +128,7 @@ async def on_member_remove(member):
 async def get_gay():
     await client.wait_until_ready()
     await asyncio.sleep(2)
-    timer = datetime(year = 2020, month=12, day=31, hour = 16, minute = 28, second = 0).strftime('%X')
+    timer = datetime(year = 2020, month=12, day=31, hour = 16, minute = 31, second = 0).strftime('%X')
     while not client.is_closed():
         now = datetime.now(tz).strftime('%X')
         if now == timer:
@@ -141,7 +141,6 @@ async def get_gay():
                 sql = "SELECT `dis_id` FROM `%s` ORDER BY RANDOM() LIMIT 1;" % 691762245105090601 #guild.id
                 cursor.execute(sql)
                 result = cursor.fetchone()
-                print("result = " + result)
                 sql = "UPDATE `%s` SET `gay_role` = 1 , `gay_count` = `gay_count` + 1 WHERE `dis_id` = %s" % (691762245105090601, str(result[0]))
                 cursor.execute(sql)
                 db.commit()
