@@ -60,7 +60,6 @@ async def on_message(message):
                 await channel.send("К сожалению сегодня все натуралы :(")
             else:
                 await channel.send("На сегодня пидорас => <@" + str(result[0]) + ">")
-            print (result)
         except Exception as e:
             print("Ошибка при выполнении запроса: " + str(e))
             db.rollback()
@@ -79,7 +78,6 @@ async def on_message(message):
                 gay_count = row[1]
                 toplist.append("<@" + str(dis_id) +"> был пидорасом "+ str(gay_count) + " раз\n")
             await channel.send(''.join(toplist))
-            print(results)
         except Exception as e:
             print("Ошибка при выполнении запроса: " + str(e))
             db.rollback()
@@ -128,27 +126,25 @@ async def on_member_remove(member):
 async def get_gay():
     await client.wait_until_ready()
     await asyncio.sleep(2)
-    timer = datetime(year = 2020, month=12, day=31, hour = 16, minute = 42, second = 0).strftime('%X')
+    timer = datetime(year = 2020, month=12, day=31, hour = 16, minute = 58, second = 0).strftime('%X')
     while not client.is_closed():
         now = datetime.now(tz).strftime('%X')
         if now == timer:
             try:
                 cursor = db.cursor()
-                #691762245105090601
-                # for guild in client.guilds:
-                sql = "UPDATE `%s` SET `gay_role` = 0 WHERE `gay_role` = 1" % 691762245105090601 #guild.id
-                cursor.execute(sql)
-                sql = "SELECT `dis_id` FROM `%s` ORDER BY RANDOM() LIMIT 1;" % 691762245105090601 #guild.id
-                cursor.execute(sql)
-                result = cursor.fetchone()
-                sql = "UPDATE `%s` SET `gay_role` = 1 , `gay_count` = `gay_count` + 1 WHERE `dis_id` = %s" % (691762245105090601, str(result[0]))
-                cursor.execute(sql)
-                db.commit()
-                # print ("result[0] = "+str(result[0]))
-                # for TextChannel in guild.text_channels:
-                TextChannel = client.get_channel(691762245641699390)
-                await TextChannel.send("Пидорас дня => <@" + str(result[0]) + ">")
-                    # break
+                for guild in client.guilds:
+                    guild.id = 691762245105090601
+                    sql = "UPDATE `%s` SET `gay_role` = 0 WHERE `gay_role` = 1" % guild.id
+                    cursor.execute(sql)
+                    sql = "SELECT `dis_id` FROM `%s` ORDER BY RANDOM() LIMIT 1;" % guild.id
+                    cursor.execute(sql)
+                    result = cursor.fetchone()
+                    sql = "UPDATE `%s` SET `gay_role` = 1 , `gay_count` = `gay_count` + 1 WHERE `dis_id` = %s" % (guild.id, str(result[0]))
+                    cursor.execute(sql)
+                    db.commit()
+                    for TextChannel in guild.text_channels:
+                        await TextChannel.send("Пидорас дня => <@" + str(result[0]) + ">")
+                        break
             except Exception as e:
                 print(e)
             finally:
