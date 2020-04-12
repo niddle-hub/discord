@@ -102,7 +102,7 @@ async def on_message(message):
             else:
                 memb = []
                 for Member in message.guild.members:
-                    memb.append(Member.id)
+                    memb.append(str(Member.id))
                 print(' : '.join(memb))
                 # if arg in memb:
                 #     await channel.send('Да, такой пидорас есть на свервере')
