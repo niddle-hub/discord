@@ -134,18 +134,19 @@ async def get_gay():
         if now == timer:
             try:
                 cursor = db.cursor()
-                for guild in client.guilds:
-                    sql = "UPDATE `%s` SET `gay_role` = 0 WHERE `gay_role` = 1" % guild.id
-                    cursor.execute(sql)
-                    sql = "SELECT `dis_id` FROM `%s` ORDER BY RANDOM() LIMIT 1;" % guild.id
-                    cursor.execute(sql)
-                    result = cursor.fetchone()
-                    sql = "UPDATE `%s` SET `gay_role` = 1 , `gay_count` = `gay_count` + 1 WHERE `dis_id` = %s" % (guild.id, str(result[0]))
-                    cursor.execute(sql)
-                    db.commit()
-                    for TextChannel in guild.text_channels:
-                        await TextChannel.send("Пидорас дня => <@" + str(result[0]) + ">")
-                        break
+                #691762245105090601
+                # for guild in client.guilds:
+                sql = "UPDATE `%s` SET `gay_role` = 0 WHERE `gay_role` = 1" % 691762245105090601 #guild.id
+                cursor.execute(sql)
+                sql = "SELECT `dis_id` FROM `%s` ORDER BY RANDOM() LIMIT 1;" % 691762245105090601 #guild.id
+                cursor.execute(sql)
+                result = cursor.fetchone()
+                sql = "UPDATE `%s` SET `gay_role` = 1 , `gay_count` = `gay_count` + 1 WHERE `dis_id` = %s" % (691762245105090601, str(result[0]))
+                cursor.execute(sql)
+                db.commit()
+                for TextChannel in guild.text_channels:
+                    await TextChannel.send("Пидорас дня => <@" + str(result[0]) + ">")
+                    break
             except Exception as e:
                 print(e)
             finally:
