@@ -87,7 +87,7 @@ async def on_message(message):
     if message.content.startswith('!reset'):
         if message.author.id == 293818387308609536:
             arg = message.content.split('!reset')[1].replace(' ','')
-            if arg == None:
+            if arg == '':
                 cursor = db.cursor()
                 sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
                 try:
