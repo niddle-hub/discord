@@ -86,7 +86,7 @@ async def on_message(message):
 
     if message.content.startswith('!reset'):
         if message.author.id == 293818387308609536:
-            arg = message.content.split('!reset')[1].replace(' ','')
+            arg = str(message.content.split('!reset')[1].replace(' ',''))
             if arg == '':
                 cursor = db.cursor()
                 sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
@@ -102,12 +102,13 @@ async def on_message(message):
             else:
                 memb = []
                 for Member in message.guild.members:
-                    memb.append(str(Member.id))
-                print(' : '.join(memb))
-                # if arg in memb:
-                #     await channel.send('Да, такой пидорас есть на свервере')
-                # else: 
-                #     await channel.send('Был передан неизвестный аргумент, я хуй знает чё с ним делать')
+                    if Member.bot == False:
+                        memb.append(str(Member.id))
+                print("Аргумент" + arg + "Список юзеров" + ' : '.join(memb))
+                if arg in memb:
+                    await channel.send('Да, такой пидорас есть на свервере')
+                else: 
+                    await channel.send('Был передан неизвестный аргумент, я хуй знает чё с ним делать')
         else:
             await channel.send("Пошёл нахуй")
 
