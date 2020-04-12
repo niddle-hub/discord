@@ -141,7 +141,7 @@ async def get_gay():
                 sql = "SELECT `dis_id` FROM `%s` ORDER BY RANDOM() LIMIT 1;" % 691762245105090601 #guild.id
                 cursor.execute(sql)
                 result = cursor.fetchone()
-                print("result = "result)
+                print("result = " + result)
                 sql = "UPDATE `%s` SET `gay_role` = 1 , `gay_count` = `gay_count` + 1 WHERE `dis_id` = %s" % (691762245105090601, str(result[0]))
                 cursor.execute(sql)
                 db.commit()
