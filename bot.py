@@ -98,7 +98,7 @@ async def on_message(message):
                 cursor.close()
         else:
             await channel.send("Пошёл нахуй")
-        print(message)
+        print(message.content)
 
     if message.content.startswith('!help'):
         emb = discord.Embed(title = "гейские команды", colour = 0xffc0cb)
