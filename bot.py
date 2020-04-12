@@ -86,19 +86,23 @@ async def on_message(message):
 
     if message.content.startswith('!reset'):
         if message.author.id == 293818387308609536:
-            cursor = db.cursor()
-            sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
-            try:
-                cursor.execute(sql)
-            except Exception as e:
-                print(e)
+            arg = message.content.split('!reset')[1].replace(' ','')
+            if arg == None:
+                cursor = db.cursor()
+                sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
+                try:
+                    cursor.execute(sql)
+                except Exception as e:
+                    print(e)
+                else:
+                    await channel.send('Бля, данные стёрлись, как жаль')
+                    db.commit()
+                finally:
+                    cursor.close()
             else:
-                db.commit()
-            finally:
-                cursor.close()
+                await channel.send('Был передан аргумент, я хуй знает чё с ним делать')
         else:
             await channel.send("Пошёл нахуй")
-        print(message.content)
 
     if message.content.startswith('!help'):
         emb = discord.Embed(title = "гейские команды", colour = 0xffc0cb)
