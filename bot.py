@@ -44,7 +44,7 @@ async def on_ready():
 #TODO: Разобраться почему не работают sql запросы
 
 @client.event 
-async def on_message(message, arg):
+async def on_message(message):
     channel = message.channel
 
     if message.author == client.user:
@@ -86,23 +86,19 @@ async def on_message(message, arg):
 
     if message.content.startswith('!reset'):
         if message.author.id == 293818387308609536:
-            if arg == None:
-                cursor = db.cursor()
-                sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
-                try:
-                    cursor.execute(sql)
-                except Exception as e:
-                    print(e)
-                else:
-                    db.commit()
-                finally:
-                    cursor.close()
-            elif arg in message.guild.members:
-                print ("нашёл")
+            cursor = db.cursor()
+            sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
+            try:
+                cursor.execute(sql)
+            except Exception as e:
+                print(e)
             else:
-                print ("не нашёл")
+                db.commit()
+            finally:
+                cursor.close()
         else:
             await channel.send("Пошёл нахуй")
+        print(message)
 
     if message.content.startswith('!help'):
         emb = discord.Embed(title = "гейские команды", colour = 0xffc0cb)
