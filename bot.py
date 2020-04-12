@@ -133,7 +133,6 @@ async def get_gay():
             try:
                 cursor = db.cursor()
                 for guild in client.guilds:
-                    guild.id = 691762245105090601
                     sql = "UPDATE `%s` SET `gay_role` = 0 WHERE `gay_role` = 1" % guild.id
                     cursor.execute(sql)
                     sql = "SELECT `dis_id` FROM `%s` ORDER BY RANDOM() LIMIT 1;" % guild.id
