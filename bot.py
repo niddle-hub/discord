@@ -60,6 +60,7 @@ async def on_message(message):
                 await channel.send("К сожалению сегодня все натуралы :(")
             else:
                 await channel.send("На сегодня пидорас => <@" + str(result[0]) + ">")
+            print (result)
         except Exception as e:
             print("Ошибка при выполнении запроса: " + str(e))
             db.rollback()
@@ -78,6 +79,7 @@ async def on_message(message):
                 gay_count = row[1]
                 toplist.append("<@" + str(dis_id) +"> был пидорасом "+ str(gay_count) + " раз\n")
             await channel.send(''.join(toplist))
+            print(results)
         except Exception as e:
             print("Ошибка при выполнении запроса: " + str(e))
             db.rollback()
