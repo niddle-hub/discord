@@ -141,16 +141,18 @@ async def get_gay():
                 sql = "SELECT `dis_id` FROM `%s` ORDER BY RANDOM() LIMIT 1;" % 691762245105090601 #guild.id
                 cursor.execute(sql)
                 result = cursor.fetchone()
+                print("result = "result)
                 sql = "UPDATE `%s` SET `gay_role` = 1 , `gay_count` = `gay_count` + 1 WHERE `dis_id` = %s" % (691762245105090601, str(result[0]))
                 cursor.execute(sql)
                 db.commit()
+                print ("result[0] = "+str(result[0]))
                 for TextChannel in guild.text_channels:
                     await TextChannel.send("Пидорас дня => <@" + str(result[0]) + ">")
                     break
             except Exception as e:
                 print(e)
             finally:
-                await asyncio.sleep(86395)
+                await asyncio.sleep(60)
         await asyncio.sleep(1)
 
 client.bg_task = client.loop.create_task(get_gay())
