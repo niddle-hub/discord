@@ -100,12 +100,13 @@ async def on_message(message):
                 finally:
                     cursor.close()
             else:
-                await channel.send('Был передан аргумент, я хуй знает чё с ним делать')
-                print (message.guild.members)
-                if arg in message.guild.members:
-                    print ("наёшл")
+                memb = []
+                for member in message.guild.members:
+                    memb.append(member.id)
+                if arg in memb:
+                    await channel.send('Да, такой пидорас есть на свервере')
                 else: 
-                    print ("не нашёл")
+                    await channel.send('Был передан неизвестный аргумент, я хуй знает чё с ним делать')
         else:
             await channel.send("Пошёл нахуй")
 
