@@ -101,6 +101,11 @@ async def on_message(message):
                     cursor.close()
             else:
                 await channel.send('Был передан аргумент, я хуй знает чё с ним делать')
+                print (message.guild.members)
+                if arg in message.guild.members:
+                    print ("наёшл")
+                else: 
+                    print ("не нашёл")
         else:
             await channel.send("Пошёл нахуй")
 
