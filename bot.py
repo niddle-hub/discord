@@ -44,7 +44,7 @@ async def on_ready():
 #TODO: Разобраться почему не работают sql запросы
 
 @client.event 
-async def on_message(message):
+async def on_message(message, arg):
     channel = message.channel
 
     if message.author == client.user:
@@ -86,16 +86,21 @@ async def on_message(message):
 
     if message.content.startswith('!reset'):
         if message.author.id == 293818387308609536:
-            cursor = db.cursor()
-            sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
-            try:
-                cursor.execute(sql)
-            except Exception as e:
-                print(e)
+            if arg == None:
+                cursor = db.cursor()
+                sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
+                try:
+                    cursor.execute(sql)
+                except Exception as e:
+                    print(e)
+                else:
+                    db.commit()
+                finally:
+                    cursor.close()
+            elif arg in message.guild.members:
+                print ("нашёл")
             else:
-                db.commit()
-            finally:
-                cursor.close()
+                print ("не нашёл")
         else:
             await channel.send("Пошёл нахуй")
 
