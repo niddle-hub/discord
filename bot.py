@@ -84,6 +84,21 @@ async def on_message(message):
         finally:
             cursor.close()
 
+    if message.content.startswith('!reset'):
+        if message.author.id == 293818387308609536:
+            cursor = db.cursor()
+            sql = "UPDATE `%s` SET `gay_role` = 0 , `gay_count` = 0" % message.guild.id
+            try:
+                cursor.execute(sql)
+            except Exception as e:
+                print(e)
+            else:
+                db.commit()
+            finally:
+                cursor.close()
+        else:
+            await channel.send("Пошёл нахуй")
+
     if message.content.startswith('!help'):
         emb = discord.Embed(title = "гейские команды", colour = 0xffc0cb)
         emb.add_field(name="!help", value="Показывает это сообщение")
@@ -126,7 +141,7 @@ async def on_member_remove(member):
 async def get_gay():
     await client.wait_until_ready()
     await asyncio.sleep(2)
-    timer = datetime(year = 2020, month=12, day=31, hour = 17, minute = 3, second = 0).strftime('%X')
+    timer = datetime(year = 2020, month=12, day=31, hour = 10, minute = 0, second = 0).strftime('%X')
     while not client.is_closed():
         now = datetime.now(tz).strftime('%X')
         if now == timer:
