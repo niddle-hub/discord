@@ -126,7 +126,7 @@ async def on_member_remove(member):
 async def get_gay():
     await client.wait_until_ready()
     await asyncio.sleep(2)
-    timer = datetime(year = 2020, month=12, day=31, hour = 16, minute = 58, second = 0).strftime('%X')
+    timer = datetime(year = 2020, month=12, day=31, hour = 16, minute = 61, second = 0).strftime('%X')
     while not client.is_closed():
         now = datetime.now(tz).strftime('%X')
         if now == timer:
