@@ -3,6 +3,7 @@ import sqlite3
 import asyncio
 import pytz
 import os
+import psycopg2
 from datetime import datetime
 
 client = discord.Client()
@@ -104,7 +105,6 @@ async def on_message(message):
                 for Member in message.guild.members:
                     if Member.bot == False:
                         memb.append(str(Member.id))
-                print("Аргумент" + arg + "Список юзеров" + ' : '.join(memb))
                 if arg in memb:
                     await channel.send('Да, такой пидорас есть на свервере')
                 else: 
