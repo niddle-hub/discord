@@ -1,7 +1,8 @@
 import discord
 import asyncio
-import os
 import psycopg2
+import random
+import os
 
 client = discord.Client()
 
@@ -26,6 +27,10 @@ async def on_message(message):
 
     if message.content.startswith('!top'):
         await channel.send("итс донт ворк")
+
+    if message.content.startswith('!монетка'):
+    	place = ["орёл","решка"]
+    	await channel.send(random.choice(place))
 
     if message.content.startswith('!help'):
         emb = discord.Embed(title = "Команды бота", colour = 0xffc0cb)
