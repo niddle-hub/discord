@@ -28,7 +28,7 @@ async def on_message(message):
 
     if message.content.startswith('!help'):
     	# str(hex(random.randint(0, 0xFFFFFF)))
-        emb = discord.Embed(title = "Команды бота", colour = default)
+        emb = discord.Embed(title = "Команды бота", colour = 0x9b59b6)
         emb.add_field(name="!help", value="Показывает это сообщение")
         emb.add_field(name="!монетка", value="подбрасывает монетку")
         await channel.send(embed=emb)
