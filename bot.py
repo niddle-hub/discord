@@ -22,12 +22,6 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('!who'):
-        await channel.send("итс донт ворк")
-
-    if message.content.startswith('!top'):
-        await channel.send("итс донт ворк")
-
     if message.content.startswith('!монетка'):
     	place = ["орёл","решка"]
     	await channel.send(random.choice(place))
@@ -35,8 +29,7 @@ async def on_message(message):
     if message.content.startswith('!help'):
         emb = discord.Embed(title = "Команды бота", colour = 0xffc0cb)
         emb.add_field(name="!help", value="Показывает это сообщение")
-        emb.add_field(name="!who", value="отключено")
-        emb.add_field(name="!top", value="отключено")
+        emb.add_field(name="!монетка", value="подбрасывает монетку")
         await channel.send(embed=emb)
 
 @client.event
