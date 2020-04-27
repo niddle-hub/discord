@@ -23,11 +23,11 @@ async def on_message(message):
         return
 
     if message.content.startswith('!монетка'):
-    	place = ["🔴орёл","🔵решка"]
+    	place = ["🔴 Орёл","🔵 Решка"]
     	await channel.send(random.choice(place))
 
     if message.content.startswith('!help'):
-        emb = discord.Embed(title = "Команды бота", colour = 0xffc0cb)
+        emb = discord.Embed(title = "Команды бота", colour = from_rgb(random.randrange(0, 255),random.randrange(0, 255),random.randrange(0, 255)))
         emb.add_field(name="!help", value="Показывает это сообщение")
         emb.add_field(name="!монетка", value="подбрасывает монетку")
         await channel.send(embed=emb)
