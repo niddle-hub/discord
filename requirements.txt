@@ -1,7 +1,3 @@
 discord.py
-aiohttp
-websockets
-chardet
 asyncio
-pytz
 psycopg2-binary
