@@ -23,7 +23,7 @@ async def on_message(message):
         return
 
     if message.content.startswith('!монетка'):
-    	place = ["орёл","решка"]
+    	place = ["🔴орёл","🔵решка"]
     	await channel.send(random.choice(place))
 
     if message.content.startswith('!help'):
