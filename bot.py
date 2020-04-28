@@ -28,11 +28,21 @@ async def on_message(message):
     	place = ["🔴 Орёл","🔵 Решка"]
     	await channel.send(random.choice(place))
 
+	if message.content.startswith('!who'):
+		args = message.content.split()[1:]
+		answer = 'Пидоры собрались узнать кто из них самый главный пидор. '
+		if len(args) > 0:
+			answer = answer + 'Им стал ' + random.choice(args) + '.'
+		else:
+			answer = answer + 'Но на вечеринку никто не пришел.'
+		await channel.send(answer)
+		
     if message.content.startswith('!help'):
     	# str(hex(random.randint(0, 0xFFFFFF)))
         emb = discord.Embed(title = "Команды бота", colour = 0x9b59b6)
         emb.add_field(name="!help", value="Показывает это сообщение")
         emb.add_field(name="!монетка", value="подбрасывает монетку")
+		emb.add_field(name="!who", value="Выясняет кто главный пидор")
         await channel.send(embed=emb)
 
 @client.event
