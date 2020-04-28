@@ -30,11 +30,11 @@ async def on_message(message):
 
     if message.content.startswith('!who'):
         args = message.content.split()[1:]
-        answer = 'Пидоры собрались узнать кто из них самый главный пидор. '
+        answer = "Пидоры собрались узнать кто из них самый главный пидор. "
         if len(args) > 0:
-            answer = answer + 'Им стал ' + random.choice(args) + '.'
+            answer += "Им стал %s." %(random.choice(args))
         else:
-            answer = answer + 'Но на вечеринку никто не пришел.'
+            answer += "Но на вечеринку никто не пришел."
         await channel.send(answer)
 		
     if message.content.startswith('!help'):
