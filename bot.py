@@ -42,7 +42,7 @@ async def on_message(message):
         emb = discord.Embed(title = "Команды бота", colour = 0x9b59b6)
         emb.add_field(name="!help", value="Показывает это сообщение")
         emb.add_field(name="!монетка", value="подбрасывает монетку")
-		emb.add_field(name="!who", value="Выясняет кто главный пидор")
+        emb.add_field(name="!who", value="Выясняет кто главный пидор")
         await channel.send(embed=emb)
 
 @client.event
