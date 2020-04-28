@@ -4,8 +4,6 @@ import psycopg2
 import random
 import os
 
-#test
-
 client = discord.Client()
 
 @client.event
@@ -15,7 +13,7 @@ async def on_connect():
 @client.event
 async def on_ready():
     for guild in client.guilds:
-        print('    Bot ready on <<' + guild.name + '>> server')
+        print('Bot ready on <<' + guild.name + '>> server')
 
 @client.event 
 async def on_message(message):
@@ -31,6 +29,7 @@ async def on_message(message):
     if message.content.startswith('!who'):
         args = message.content.split()[1:]
         answer = "Пидоры собрались узнать кто из них самый главный пидор. "
+        print (args)
         if len(args) > 0:
             answer += "Им стал %s." %(random.choice(args))
         else:
@@ -38,7 +37,6 @@ async def on_message(message):
         await channel.send(answer)
 		
     if message.content.startswith('!help'):
-    	# str(hex(random.randint(0, 0xFFFFFF)))
         emb = discord.Embed(title = "Команды бота", colour = 0x9b59b6)
         emb.add_field(name="!help", value="Показывает это сообщение")
         emb.add_field(name="!монетка", value="подбрасывает монетку")
