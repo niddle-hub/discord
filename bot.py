@@ -29,8 +29,7 @@ async def on_message(message):
     if message.content.startswith('!who'):
         args = message.content.split()[1:]
         answer = "Пидоры собрались узнать кто из них самый главный пидор. "
-        print (args)
-        if len(args) > 0:
+        if args:
             answer += "Им стал %s." %(random.choice(args))
         else:
             answer += "Но на вечеринку никто не пришел."
