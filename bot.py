@@ -4,6 +4,8 @@ import psycopg2
 import random
 import os
 
+#test
+
 client = discord.Client()
 
 @client.event
