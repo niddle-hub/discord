@@ -33,13 +33,9 @@ async def on_message(message):
 
 @client.event
 async def on_voice_state_update(member,before,after):
-    if after.channel.id == 737973690255409183
+    if member.voice.after.channel.id == 737973690255409183
 	    new_channel = await member.guild.create_voice_channel(member.name)
 	    await member.move_to(new_channel)
-	    def check():
-	        return len(new_channel.members) == 0
-	    await client.wait_for('voice_state_update', check=check)
-	    await new_channel.delete()
 
 @client.event
 async def on_member_join(member):
