@@ -1,6 +1,5 @@
 import discord
 import asyncio
-import psycopg2
 import random
 import os
 
@@ -25,21 +24,11 @@ async def on_message(message):
     if message.content.startswith('!монетка'):
     	place = ["🔴 Орёл","🔵 Решка"]
     	await channel.send(random.choice(place))
-
-    if message.content.startswith('!who'):
-        args = message.content.split()[1:]
-        answer = "Пидоры собрались узнать кто из них самый главный пидор. "
-        if args:
-            answer += "Им стал %s." %(random.choice(args))
-        else:
-            answer += "Но на вечеринку никто не пришел."
-        await channel.send(answer)
 		
     if message.content.startswith('!help'):
         emb = discord.Embed(title = "Команды бота", colour = 0x9b59b6)
         emb.add_field(name="!help", value="Показывает это сообщение")
         emb.add_field(name="!монетка", value="подбрасывает монетку")
-        emb.add_field(name="!who", value="Выясняет кто главный пидор")
         await channel.send(embed=emb)
 
 @client.event
@@ -51,7 +40,6 @@ async def on_member_join(member):
 async def on_member_remove(member):
     for TextChannel in member.guild.text_channels:
         await TextChannel.send("Нас покидает <@{0}> ...................... похуй......🕯".format(member.id))
-
 
 TOKEN = os.environ.get('BOT_TOKEN')
 client.run(str(TOKEN))
