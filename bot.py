@@ -31,11 +31,16 @@ async def on_message(message):
         emb.add_field(name="!монетка", value="подбрасывает монетку")
         await channel.send(embed=emb)
 
-# @client.event
-# async def on_group_join(channel,user):
-#     if channel.id == 737973690255409183 and channel.type == "voice"
-#         guild.create_voice_channel(user.name)
-#         user.move_to(channel)
+@client.event
+async def on_voice_state_update(member,before,after): #737973690255409183
+	voiceID = voice[0]
+	if after.channel.id == voiceID:
+		new_channel = await member.guild.create_voice_channel(member.name."'s channel")
+		await member.move_to(new_channel)
+		def check():
+	        return len(new_channel.members) == 0
+	    await client.wait_for('voice_state_update', check=check)
+	    await new_channel.delete()
 
 @client.event
 async def on_member_join(member):
