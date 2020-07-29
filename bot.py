@@ -22,14 +22,20 @@ async def on_message(message):
         return
 
     if message.content.startswith('!монетка'):
-    	place = ["🔴 Орёл","🔵 Решка"]
-    	await channel.send(random.choice(place))
-		
+        place = ["🔴 Орёл","🔵 Решка"]
+        await channel.send(random.choice(place))
+
     if message.content.startswith('!help'):
         emb = discord.Embed(title = "Команды бота", colour = 0x9b59b6)
         emb.add_field(name="!help", value="Показывает это сообщение")
         emb.add_field(name="!монетка", value="подбрасывает монетку")
         await channel.send(embed=emb)
+
+@client.event
+async def on_group_join(channel,user):
+    if channel.id == 737973690255409183 and channel.type == "voice"
+        guild.create_voice_channel(user.name)
+        user.move_to(channel)
 
 @client.event
 async def on_member_join(member):
