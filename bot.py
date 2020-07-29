@@ -31,11 +31,11 @@ async def on_message(message):
         emb.add_field(name="!монетка", value="подбрасывает монетку")
         await channel.send(embed=emb)
 
-@client.event
-async def on_group_join(channel,user):
-    if channel.id == 737973690255409183 and channel.type == "voice"
-        guild.create_voice_channel(user.name)
-        user.move_to(channel)
+# @client.event
+# async def on_group_join(channel,user):
+#     if channel.id == 737973690255409183 and channel.type == "voice"
+#         guild.create_voice_channel(user.name)
+#         user.move_to(channel)
 
 @client.event
 async def on_member_join(member):
