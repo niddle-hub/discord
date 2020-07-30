@@ -34,7 +34,7 @@ async def on_message(message):
 @client.event
 async def on_voice_state_update(member,before,after):
     try:
-    if after.channel.id == 737973690255409183:
+        if after.channel.id == 737973690255409183:
             new_channel = await member.guild.create_voice_channel(member.name)
             await member.move_to(new_channel)
             def check(a,b,c):
