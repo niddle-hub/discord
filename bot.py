@@ -36,7 +36,7 @@ async def on_voice_state_update(member,before,after):
     if member.voice.channel.id == 737973690255409183:
         new_channel = await member.guild.create_voice_channel(member.name)
         await member.move_to(new_channel)
-        def check():
+        def check(a,b,c):
             return len(new_channel.members) == 0
         await client.wait_for('voice_state_update', check=check)
         await new_channel.delete()
