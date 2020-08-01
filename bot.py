@@ -35,35 +35,35 @@ async def on_message(message):
 async def on_voice_state_update(member,before,after):
     try:
         if after.channel.id == 737973690255409183:
-            new_channel = await member.guild.create_voice_channel(member.name, category = member.guild.categories[2])
+            new_channel = await member.guild.create_voice_channel(name = "Общий канал {0}".format(member.name), category = member.guild.categories[3])
             await member.move_to(new_channel)
             def check(a,b,c):
                 return len(new_channel.members) == 0
             await client.wait_for('voice_state_update', check=check)
             await new_channel.delete()
         elif after.channel.id == 738715723442159677:
-            new_channel = await member.guild.create_voice_channel(name = "Частный канал {0}".format(member.name), category = member.guild.categories[3], user_limit = 2)
+            new_channel = await member.guild.create_voice_channel(name = "Частный канал {0}".format(member.name), category = member.guild.categories[4], user_limit = 2)
             await member.move_to(new_channel)
             def check(a,b,c):
                 return len(new_channel.members) == 0
             await client.wait_for('voice_state_update', check=check)
             await new_channel.delete()
         elif after.channel.id == 738715774444896297:
-            new_channel = await member.guild.create_voice_channel(name = "Частный канал {0}".format(member.name), category = member.guild.categories[3], user_limit = 3)
+            new_channel = await member.guild.create_voice_channel(name = "Частный канал {0}".format(member.name), category = member.guild.categories[4], user_limit = 3)
             await member.move_to(new_channel)
             def check(a,b,c):
                 return len(new_channel.members) == 0
             await client.wait_for('voice_state_update', check=check)
             await new_channel.delete()
         elif after.channel.id == 738715823887220768:
-            new_channel = await member.guild.create_voice_channel(name = "Частный канал {0}".format(member.name), category = member.guild.categories[3], user_limit = 4)
+            new_channel = await member.guild.create_voice_channel(name = "Частный канал {0}".format(member.name), category = member.guild.categories[4], user_limit = 4)
             await member.move_to(new_channel)
             def check(a,b,c):
                 return len(new_channel.members) == 0
             await client.wait_for('voice_state_update', check=check)
             await new_channel.delete()
         elif after.channel.id == 738715851691130931:
-            new_channel = await member.guild.create_voice_channel(name = "Частный канал {0}".format(member.name), category = member.guild.categories[3], user_limit = 5)
+            new_channel = await member.guild.create_voice_channel(name = "Частный канал {0}".format(member.name), category = member.guild.categories[4], user_limit = 5)
             await member.move_to(new_channel)
             def check(a,b,c):
                 return len(new_channel.members) == 0
